@@ -6,6 +6,7 @@ info.onCountdownEnd(function () {
     fly.follow(player, 40)
 })
 sprites.onOverlap(SpriteKind.Enemy, SpriteKind.Player, function (sprite, otherSprite) {
+    info.setScore(0)
     game.over(false)
 })
 let fast1: Sprite = null
@@ -13,7 +14,6 @@ let fast2: Sprite = null
 let slow1: Sprite = null
 let fly: Sprite = null
 let player: Sprite = null
-info.setScore(10)
 tiles.setCurrentTilemap(tilemap`level`)
 player = sprites.create(assets.image`player`, SpriteKind.Player)
 player.setPosition(0, 63)
@@ -32,13 +32,11 @@ enemy1.setVelocity(0, -42)
 info.startCountdown(10)
 game.onUpdate(function () {
     if (player.isHittingTile(CollisionDirection.Right)) {
+        info.setScore(info.countdown())
         music.play(music.melodyPlayable(music.magicWand), music.PlaybackMode.InBackground)
         game.showLongText("\"The Lord is the stronghold of my life- of whom shall I be afraid?\"", DialogLayout.Bottom)
         game.over(true, effects.smiles)
     }
-})
-game.onUpdateInterval(1000, function () {
-    info.setScore(info.countdown())
 })
 game.onUpdateInterval(1000, function () {
     slow1 = sprites.create(assets.image`enemy4`, SpriteKind.Enemy)
