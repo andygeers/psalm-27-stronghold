@@ -334,4 +334,56 @@ game.onUpdateInterval(1000, function () {
 })
 ```
 ## Step 8: A big boss
-    
+
+Finally, for a bit of added urgency to stop the player waiting too long to sneak past
+one of the guards, lets add in a big boss enemy that starts to chase you once the timer runs out:
+
+For this we'll use the ``||info:on countdown end||`` event:
+
+* ``||music:play big crash sound in background||`` to warn the player something bad is about to happen!
+* Use ``||variables(sprites):set sprite to||`` to create a boss of type `Enemy`
+* ``||sprites:set position||`` to 0,50
+* This time we will use ``||sprites:set boss follow player with speed 40||``
+so that they chase you, wherever you are
+
+```blocks
+info.onCountdownEnd(function () {
+    music.play(music.melodyPlayable(music.bigCrash), music.PlaybackMode.UntilDone)
+    let boss = sprites.create(img`
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. f . . . . . f f f f f . . . . 
+. f f . . . f f f f f f f . . . 
+. . . f . f f . f f f . f f . f 
+. . . . f 5 . 5 5 f 5 . 5 . f f 
+. . . . 5 . 8 5 5 5 5 5 8 f f . 
+. . . . . 5 8 8 5 5 5 8 8 3 . . 
+. . . . . 5 8 8 8 8 8 8 8 3 . . 
+. . . . . 8 8 8 8 8 8 8 8 8 . . 
+. . . . f 5 8 8 8 8 8 8 8 . . . 
+. . f f . . 2 2 8 8 8 2 2 f f . 
+. f f . . 2 2 2 2 2 2 2 2 2 f f 
+. . . . . . 2 2 . . . 2 2 . . f 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+`, SpriteKind.Enemy)
+    boss.setPosition(0, 50)
+    boss.setFlag(SpriteFlag.BounceOnWall, true)
+    boss.follow(frog, 40)
+})
+```
+
+## Conclusion
+
+Well done, you made a game!
+
+Let us leave you with this thought from King David:
+
+> "One thing I ask from the Lord,
+>    this only do I seek:
+> that I may dwell in the house of the Lord
+>     all the days of my life,
+> to gaze on the beauty of the Lord
+>    and to seek him in his temple.
+> For in the day of trouble
+>    he will keep me safe in his dwelling;" (Psalm 27:4-5)
