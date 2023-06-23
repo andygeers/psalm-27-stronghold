@@ -2,8 +2,7 @@
     "name": "Psalm 27 Stronghold",
     "description": "",
     "dependencies": {
-        "device": "*",
-        "color-coded-tilemap": "*"
+        "device": "*"
     },
     "files": [
         "main.blocks",
