@@ -43,24 +43,7 @@ The 'x' value means how far left - try 0 to start with. The 'y' value means how 
 Try running the game and seeing what happens!
 
 ```blocks
-let player = sprites.create(img`
-. . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . 
-. . . . . . c c c . . . . . . . 
-. . . . . . 5 3 5 . . . . . . . 
-. . . . . . 3 3 3 . . . . . . . 
-. . . . . 2 2 2 2 2 2 2 3 . . . 
-. . . . 2 2 2 2 2 . . . . . . . 
-. . . . 2 . 2 2 2 . . . . . . . 
-. . . . 3 . 2 2 2 . . . . . . . 
-. . . . . . b b b . . . . . . . 
-. . . . . . b b b . . . . . . . 
-. . . . . . b . b . . . . . . . 
-. . . . . b b . b b . . . . . . 
-. . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . 
-`, SpriteKind.Player)
+let player = sprites.create(img``, SpriteKind.Player)
 
 player.setPosition(0, 63)
 controller.moveSprite(player, 100, 100)
@@ -98,42 +81,8 @@ You'll need to create a new variable for each one, and make sure you set them to
 * Finally, for a bit of juice, add a sparking trail effect to each one: ``||sprites:start trail effect||``.
 
 ```blocks
-let enemy1 = sprites.create(img`
-. . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . 
-. . . . . . . f . . . . . . . . 
-. . . . . . f f f . . . . . . . 
-. . . . . f f f f f . . . . . . 
-. . . . . f d f d f . . . . . . 
-. . . . . . d d d . . . . . . . 
-. . . . . . a a a . . . . . . . 
-. . . . . . a a a f . . . . . . 
-. . . . . . a a a f . . . . . . 
-. . . . . . a a a f . . . . . . 
-. . . . . . 2 2 2 f . . . . . . 
-. . . . . . 2 . 2 f . . . . . . 
-. . . . . . . . . f . . . . . . 
-. . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . 
-`, SpriteKind.Enemy)
-let enemy2 = sprites.create(img`
-. . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . 
-. . . . . . . f . . . . . . . . 
-. . . . . . f f f . . . . . . . 
-. . . . . f f f f f . . . . . . 
-. . . . . f d f d f . . . . . . 
-. . . . . . d d d . . . . . . . 
-. . . . . . 8 8 8 . . . . . . . 
-. . . . . f 8 8 8 . . . . . . . 
-. . . . f f f 8 8 . . . . . . . 
-. . . . . f 8 8 8 . . . . . . . 
-. . . . . f 4 4 4 . . . . . . . 
-. . . . . f 4 . 4 . . . . . . . 
-. . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . 
-`, SpriteKind.Enemy)
+let enemy1 = sprites.create(img``, SpriteKind.Enemy)
+let enemy2 = sprites.create(img``, SpriteKind.Enemy)
 enemy1.setFlag(SpriteFlag.BounceOnWall, true)
 enemy2.setFlag(SpriteFlag.BounceOnWall, true)
 enemy1.setPosition(25, 20)
@@ -185,24 +134,7 @@ If they are, then lets:
 
 ```blocks
 
-let player = sprites.create(img`
-. . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . 
-. . . . . . c c c . . . . . . . 
-. . . . . . 5 3 5 . . . . . . . 
-. . . . . . 3 3 3 . . . . . . . 
-. . . . . 2 2 2 2 2 2 2 3 . . . 
-. . . . 2 2 2 2 2 . . . . . . . 
-. . . . 2 . 2 2 2 . . . . . . . 
-. . . . 3 . 2 2 2 . . . . . . . 
-. . . . . . b b b . . . . . . . 
-. . . . . . b b b . . . . . . . 
-. . . . . . b . b . . . . . . . 
-. . . . . b b . b b . . . . . . 
-. . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . 
-`, SpriteKind.Player)
+let player = sprites.create(img``, SpriteKind.Player)
 
 game.onUpdate(function () {
     if (player.isHittingTile(CollisionDirection.Right)) {
@@ -240,72 +172,21 @@ let fast_2: Sprite = null
 let slow_1: Sprite = null
 
 game.onUpdateInterval(800, function () {
-    fast_1 = sprites.create(img`
-. . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . 
-. . . . . . . f . . . . . . . . 
-. . . . . . f f f . . . . . . . 
-. . . . . f f f f f . . . . . . 
-. . . . . f d f d f . . . . . . 
-. . . . . . d d d . . . . . . . 
-. . . . . . 8 8 8 . . . . . . . 
-. . . . . f 8 f 8 . . . . . . . 
-. . . . . . f 8 8 f . . . . . . 
-. . . . . f 8 f 8 f . . . . . . 
-. . . . . . 2 2 2 f . . . . . . 
-. . . . . . 2 . 2 . . . . . . . 
-. . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . 
-`, SpriteKind.Enemy)
+    fast_1 = sprites.create(img``, SpriteKind.Enemy)
     fast_1.setFlag(SpriteFlag.DestroyOnWall, true)
     fast_1.setPosition(119, 10)
     fast_1.setVelocity(0, 100)
     fast_1.startEffect(effects.trail)
 })
 game.onUpdateInterval(800, function () {
-    fast_2 = sprites.create(img`
-. . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . 
-. . . . . . . f . . . . . . . . 
-. . . . . . f f f . . . . . . . 
-. . . . . f f f f f . . . . . . 
-. . . . . f d f d f . . . . . . 
-. . . . . . d d d . . . . . . . 
-. . . . . . a a a . . . . . . . 
-. . . . . . a a a f . . . . . . 
-. . . . . . a a a f . . . . . . 
-. . . . . . a a a f . . . . . . 
-. . . . . . 2 2 2 f . . . . . . 
-. . . . . . 2 . 2 f . . . . . . 
-. . . . . . . . . f . . . . . . 
-. . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . 
-`, SpriteKind.Enemy)
+    fast_2 = sprites.create(img``, SpriteKind.Enemy)
     fast_2.setFlag(SpriteFlag.DestroyOnWall, true)
     fast_2.setPosition(215, 10)
     fast_2.setVelocity(0, 100)
     fast_2.startEffect(effects.trail)
 })
 game.onUpdateInterval(1000, function () {
-    slow_1 = sprites.create(img`
-. . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . 
-. . . . . . f . . . . . . . . . 
-. . . . . f f f . . . . . . . . 
-. . . . f f f f f . . . . . . . 
-. . . . f d f d f . . . . . . . 
-. . . . . d d d . . . . . . . . 
-. . . . 2 2 2 2 2 . . . . . . . 
-. . . 2 2 2 2 2 2 f . . . . . . 
-. . . 2 2 2 2 2 f f f . . . . . 
-. . . . 2 2 2 2 2 f . . . . . . 
-. . . . 8 8 8 8 8 f . . . . . . 
-. . . . 8 . . . 8 f . . . . . . 
-. . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . 
-`, SpriteKind.Enemy)
+    slow_1 = sprites.create(img``, SpriteKind.Enemy)
     slow_1.setFlag(SpriteFlag.DestroyOnWall, true)
     slow_1.setPosition(168, 120)
     slow_1.setVelocity(0, -79)
@@ -349,24 +230,7 @@ so that they chase you, wherever you are
 ```blocks
 info.onCountdownEnd(function () {
     music.play(music.melodyPlayable(music.bigCrash), music.PlaybackMode.UntilDone)
-    let boss = sprites.create(img`
-. . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . 
-. f . . . . . f f f f f . . . . 
-. f f . . . f f f f f f f . . . 
-. . . f . f f . f f f . f f . f 
-. . . . f 5 . 5 5 f 5 . 5 . f f 
-. . . . 5 . 8 5 5 5 5 5 8 f f . 
-. . . . . 5 8 8 5 5 5 8 8 3 . . 
-. . . . . 5 8 8 8 8 8 8 8 3 . . 
-. . . . . 8 8 8 8 8 8 8 8 8 . . 
-. . . . f 5 8 8 8 8 8 8 8 . . . 
-. . f f . . 2 2 8 8 8 2 2 f f . 
-. f f . . 2 2 2 2 2 2 2 2 2 f f 
-. . . . . . 2 2 . . . 2 2 . . f 
-. . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . 
-`, SpriteKind.Enemy)
+    let boss = sprites.create(img``, SpriteKind.Enemy)
     boss.setPosition(0, 50)
     boss.setFlag(SpriteFlag.BounceOnWall, true)
     boss.follow(frog, 40)
